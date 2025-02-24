@@ -1,0 +1,8 @@
+{
+  "/page": "app/page.js",
+  "/podcast/page": "app/podcast/page.js",
+  "/canvas/page": "app/canvas/page.js",
+  "/gallery/page": "app/gallery/page.js",
+  "/writing/page": "app/writing/page.js",
+  "/about/page": "app/about/page.js"
+}

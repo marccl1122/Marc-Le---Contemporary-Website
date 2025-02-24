@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { Toaster } from "@/components/ui/toaster"
+import Hero3D from '@/components/hero-3d'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,13 +27,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-neon-green text-white p-2">
-            Skip to content
-          </a>
-          <Header />
-          <main id="main-content">{children}</main>
-          <Footer />
-          <Toaster />
+          <div className="min-h-screen">
+            <Hero3D />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <Toaster />
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -1,23 +1,73 @@
-import ImageLightbox from '@/components/image-ligthbox'
+"use client"
 
-export default function Gallery() {
-  const images = [
-    { src: '/images/placeholder1.svg', alt: 'Nature 1' },
-    { src: '/images/placeholder2.svg', alt: 'Nature 2' },
-    { src: '/images/placeholder3.svg', alt: 'Nature 3' },
-    { src: '/images/placeholder1.svg', alt: 'Nature 4' },
-    { src: '/images/placeholder2.svg', alt: 'Nature 5' },
-    { src: '/images/placeholder3.svg', alt: 'Nature 6' },
-  ]
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { siteConfig } from '@/lib/constants'
+
+interface GalleryProps {
+  className?: string
+}
+
+export default function Gallery({ className }: GalleryProps) {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null)
+
+  const fadeIn = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.8 }
+  }
+
+  const stagger = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  }
 
   return (
-    <div className="container mx-auto px-6 py-20">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-white">Gallery</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {images.map((image, index) => (
-          <ImageLightbox key={index} src={image.src} alt={image.alt} />
-        ))}
+    <section className={`min-h-screen pt-32 ${className}`}>
+      <div className="container mx-auto px-12">
+        <motion.div 
+          className="max-w-2xl mx-auto text-center mb-24 space-y-6"
+          initial="initial"
+          animate="animate"
+          variants={fadeIn}
+        >
+          <h1 className="text-3xl font-light tracking-widest">Gallery</h1>
+          <p className="text-sm font-light text-muted-foreground/60 leading-relaxed">
+            A collection of moments frozen in time, each telling its own story of nature's boundless beauty.
+          </p>
+        </motion.div>
+
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
+          variants={stagger}
+          initial="initial"
+          animate="animate"
+        >
+          {siteConfig.gallery.categories.map((category, index) => (
+            <motion.article
+              key={category.name}
+              variants={fadeIn}
+              className="group relative aspect-[3/4] bg-secondary/20"
+              onClick={() => setSelectedImage(selectedImage === index ? null : index)}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <div className="transform transition-all duration-500 translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100">
+                  <span className="text-sm font-light tracking-widest text-foreground/60 block mb-3">
+                    {category.name}
+                  </span>
+                  <p className="text-xs font-light text-foreground/40 leading-relaxed">
+                    {category.description}
+                  </p>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </motion.div>
       </div>
-    </div>
+    </section>
   )
 }
