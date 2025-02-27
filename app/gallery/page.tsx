@@ -1,29 +1,32 @@
-"use client"
+import React, { useState } from 'react';
+import { motion } from 'framer-motion'; // Assuming you're using framer-motion for animations
+import { siteConfig } from '@/lib/constants';
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { siteConfig } from '@/lib/constants'
-
-interface GalleryPropss {
-  className?: string
+interface GalleryProps {
+  className?: string; // Optional className prop
 }
 
-export default function Gallery({ className }: GalleryPropss) {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null)
+const Gallery: React.FC<GalleryProps> = ({ className }) => {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const fadeIn = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
-    transition: { duration: 0.8 }
-  }
+    transition: { duration: 0.8 },
+  };
 
   const stagger = {
     animate: {
       transition: {
-        staggerChildren: 0.2
-      }
-    }
-  }
+        staggerChildren: 0.2,
+      },
+    },
+  };
+  const images = [
+    'image1.jpg',
+    'image2.jpg',
+    'image3.jpg',
+  ];
 
   return (
     <section className={`min-h-screen pt-32 ${className}`}>
@@ -59,7 +62,7 @@ export default function Gallery({ className }: GalleryPropss) {
                   <span className="text-sm font-light tracking-widest text-foreground/60 block mb-3">
                     {category.name}
                   </span>
-                  <p className="text-xs font-light text-foreground/40 leading-relaxed">
+                  <p className="text-sm text-muted-foreground/90 mt-2">
                     {category.description}
                   </p>
                 </div>
