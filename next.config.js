@@ -1,15 +1,42 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config) => {
-    config.externals = [...config.externals, { canvas: 'canvas' }];
-    return config;
-  },
+  swcMinify: true,
   images: {
-    dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: [],
+    unoptimized: true
   },
+  experimental: {
+    appDir: true,
+  },
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
+  poweredByHeader: false,
+  compress: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload'
+          }
+        ],
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig
