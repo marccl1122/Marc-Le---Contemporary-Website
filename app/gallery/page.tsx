@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'; // Assuming you're using framer-motion f
 import { siteConfig } from '@/lib/constants';
 
 interface GalleryProps {
-  className: string; // Optional className prop
+  className: any; 
 }
 
 const Gallery: React.FC<GalleryProps> = ({ className }) => {
