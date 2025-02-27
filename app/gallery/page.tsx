@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { siteConfig } from '@/lib/constants'
 
-interface GalleryProps {
+interface GalleryPropss {
   className?: string
 }
 
-export default function Gallery({ className }: GalleryProps) {
+export default function Gallery({ className }: GalleryPropss) {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
 
   const fadeIn = {
