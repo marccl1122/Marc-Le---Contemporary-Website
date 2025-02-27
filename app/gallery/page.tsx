@@ -1,3 +1,6 @@
+// Mark this file as a Client Component
+"use client";
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion'; // Assuming you're using framer-motion for animations
 import { siteConfig } from '@/lib/constants';
@@ -22,11 +25,6 @@ const Gallery: React.FC<GalleryProps> = ({ className }) => {
       },
     },
   };
-  const images = [
-    'image1.jpg',
-    'image2.jpg',
-    'image3.jpg',
-  ];
 
   return (
     <section className={`min-h-screen pt-32 ${className}`}>
@@ -72,5 +70,7 @@ const Gallery: React.FC<GalleryProps> = ({ className }) => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
+
+export default Gallery;
