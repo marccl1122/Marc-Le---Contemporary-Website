@@ -1,8 +1,9 @@
 {
-  "/page": "app/page.js",
-  "/podcast/page": "app/podcast/page.js",
-  "/canvas/page": "app/canvas/page.js",
-  "/gallery/page": "app/gallery/page.js",
+  "/not-found": "app/not-found.js",
   "/writing/page": "app/writing/page.js",
-  "/about/page": "app/about/page.js"
+  "/podcast/page": "app/podcast/page.js",
+  "/about/page": "app/about/page.js",
+  "/gallery/page": "app/gallery/page.js",
+  "/canvas/page": "app/canvas/page.js",
+  "/page": "app/page.js"
 }
